@@ -1,12 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "./Search.css"
 import "react-date-range/dist/styles.css" // main style file
-import "react-date-range/rist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range"
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRangePicker } from "react-date-range";
+import { Button } from "@material-ui/core";
+import PeopleIcon from "@material-ui/icons/People";
 
 // DATE PICKER COMPONENT
 
+// Download:
 // npm i react-date-range
+// npm i date-fns (ex: drop-down date menu)
+
 function Search() {
     const [startDate, setStartDate] = useState
     (new Date());
@@ -21,15 +26,24 @@ function Search() {
 
     function handleSelect(ranges) {
         setStartDate(ranges.selection.startDate)
-        sentEndDate(ranges.selection.endDate)
+        setEndDate(ranges.selection.endDate)
     }
 
 
     return (
         <div className="search">
-            <DateRangePicker ranges={
-                [selectionRange]
-            }
+            <DateRangePicker 
+            ranges={[selectionRange]}
+            onChange={handleSelect} />
+            <h2>
+                Number of guests
+                <PeopleIcon />
+            </h2>
+            <input 
+                min={0} 
+                defaultValue={2}
+                type="number" />
+                <Button>Search Airbnb</Button>
         </div>
     )
 }
