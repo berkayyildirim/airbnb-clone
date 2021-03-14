@@ -2,29 +2,31 @@ import './App.css';
 import Home from "./Home";
 import Header from "./Header";
 import Footer from "./Footer";
+import SearchPage from "./SearchPage.js"
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 function App() {
   return (
 
     //BEM
-    <div className="App">
-    <Header/>
-      <Home/>
-    <Footer />
+    // I downloaded react router by using "npm i react-router-dom in this stage"
 
-    {/* Home */}
-       {/* Header */}
+    <div className="App">
+      <Router>
+        <Header/>
+
+        <Switch>
+          <Route path="/search">
+            <SearchPage/>
+          </Route>
+          <Route path="/">
+            <Home/>
+          </Route>
+        </Switch>
+
+        <Footer />
+      </Router>
     
-       {/* Banner */}
-        {/* Search */}
-    
-       {/* Cards */}
-    
-       {/* Footer */}
-    
-    {/* SearchPage */}
-      {/* Header */}
-      {/* ... */}
      
   </div>
   );
